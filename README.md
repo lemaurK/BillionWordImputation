@@ -25,9 +25,42 @@
 
 #### Preprocessing / Clean up
 
-* Skim the appropriate amount of sentences off the top of each dataset, format into lists, remove punctuation and change all cases to lowercase, then place into dataframe.
+* *None needed.*
 
 #### Data Visualization
+
+* Sample sentences
+  * 'The U.S. Centers for Disease Control and Prevention initially advised school systems to close if outbreaks occurred , then reversed itself , saying the apparent mildness of the virus meant most schools and day care centers should stay open , even if they had confirmed cases of swine flu .'
+  * 'When Ms. Winfrey invited Suzanne Somers to share her controversial views about bio-identical hormone treatment on her syndicated show in 2009 , it won Ms. Winfrey a rare dollop of unflattering press , including a Newsweek cover story titled " Crazy Talk : Oprah , Wacky Cures & You . "'
+  * 'Elk calling -- a skill that hunters perfected long ago to lure game with the promise of a little romance -- is now its own sport .'
+  * "Don 't !"
+  * 'Fish , ranked 98th in the world , fired 22 aces en route to a 6-3 , 6-7 ( 5 / 7 ) , 7-6 ( 7 / 4 ) win over seventh-seeded Argentinian David Nalbandian .'
+
+* Tokenized sentence with padding (representative of the first sample sentence)
+  * tensor([  101,  1996,  1057,  1012,  1055,  1012,  6401,  2005,  4295,  2491,
+         1998,  9740,  3322,  9449,  2082,  3001,  2000,  2485,  2065,  8293,
+         2015,  4158,  1010,  2059, 11674,  2993,  1010,  3038,  1996,  6835,
+        10256,  2791,  1997,  1996,  7865,  103,  2087,  2816,  1998,  2154,
+         2729,  6401,  2323,  2994,  2330,  1010,  2130,  2065,  2027,  2018,
+         4484,  3572,  1997, 25430,  3170, 19857,  1012,   102,     0,     0,
+            0,     0,     0,     0,     0,...,     0,     0,     0,
+            0,     0]) where...
+  * 101 = [CLS] (classifying/starting token)
+  * 102 = [SEP] (separation/ending token) 
+  * 103 = [MASK] (masked/removed token)           
+
+
+### Problem Formulation
+
+  For both the Masked Language Modeling with BERT and Masked Language Modeling with BERT and HuggingFace models, the input was the unedited full sentences and the expected output was "unmasked" sentences from the test set. Only the Masked Language Modeling with BERT model was able to give me some kind of tangible output. The other model would kill my kernel every time an attempt was made to train the model, regardless of how many parameters I move around.
+  
+  For the Next Word Prediction BI-LSTM model the input was sentences that were "chopped off" at the index of the masked word. The input is a bit different because the expectation is for the model predict the next word in the sentence, which can then be spliced back with the remainder of the sentence. The furthest I could get with this model was for it to return to me a list of words it "believed" could be the next word, but I could not get it to actually choose a word.
+
+### Training
+
+  The training was set to run on CPU for the Masked Language Modeling with BERT and Masked Language Modeling with BERT and HuggingFace models, and the last model was not set to run on any device in particular. Training for all models took upwards of 9 hours before any edits were made to the training/testing set, after chopping down, training took around 45 minutes. The only training curves I was able to extract were for the Next Word Prediction BI-LSTM model, and they looked to be very linear because of my machines inability to complete a sufficient amount of epochs without killing the kernel. The decision to stop training was highly regulated by how many epochs my machine could handle. I did try Google Collab to see if I could offload the computaional power needed to a remote computer, and a I was met with a similar demise.
+
+### Model Performance
 
 * Next Word Prediction BI-LSTM (epochs, accuracy)
 
@@ -39,15 +72,6 @@
 
 ![image](https://user-images.githubusercontent.com/89792487/207628069-6b883822-2118-4fe1-ac69-01378ce976dd.png)
 
-### Problem Formulation
-
-  For both the Masked Language Modeling with BERT and Masked Language Modeling with BERT and HuggingFace models, the input was the unedited full sentences and the expected output was "unmasked" sentences from the test set. Only the Masked Language Modeling with BERT model was able to give me some kind of tangible output. The other model would kill my kernel every time an attempt was made to train the model, regardless of how many parameters I move around.
-  
-  For the Next Word Prediction BI-LSTM model the input was sentences that were "chopped off" at the index of the masked word. The input is a bit different because the expectation is for the model predict the next word in the sentence, which can then be spliced back with the remainder of the sentence. The furthest I could get with this model was for it to return to me a list of words it "believed" could be the next word, but I could not get it to actually choose a word.
-
-### Training
-
-  The training was set to run on CPU for the Masked Language Modeling with BERT and Masked Language Modeling with BERT and HuggingFace models, and the last model was not set to run on any device in particular. Training for all models took upwards of 9 hours before any edits were made to the training/testing set, after chopping down, training took around 45 minutes. The only training curves I was able to extract were for the Next Word Prediction BI-LSTM model, and they looked to be very linear because of my machines inability to complete a sufficient amount of epochs without killing the kernel. The decision to stop training was highly regulated by how many epochs my machine could handle. I did try Google Collab to see if I could offload the computaional power needed to a remote computer, and a I was met with a similar demise.
 
 ### Conclusions
 
