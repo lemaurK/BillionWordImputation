@@ -63,18 +63,9 @@
 
 ### Overview of files in repository
 
-* Describe the directory structure, if any.
-* List all relavent files and describe their role in the package.
-* An example:
-  * utils.py: various functions that are used in cleaning and visualizing data.
-  * preprocess.ipynb: Takes input data in CSV and writes out data frame after cleanup.
-  * visualization.ipynb: Creates various visualizations of the data.
-  * models.py: Contains functions that build the various models.
-  * training-model-1.ipynb: Trains the first model and saves model during training.
-  * training-model-2.ipynb: Trains the second model and saves model during training.
-  * training-model-3.ipynb: Trains the third model and saves model during training.
-  * performance.ipynb: loads multiple trained models and compares results.
-  * inference.ipynb: loads a trained model and applies it to test data to create kaggle submission.
+* MLM with Bert and HuggingFace Directory contains the script for respective model.
+* MLM with Bert Directory contains the script for the respective model and the model file.
+* NWP BI-LSTM Directory (Next Word Prediction BI-LSTM) contains the script for the respective model.
 
 * Note that all of these notebooks should contain enough text for someone to understand what is happening.
 
@@ -87,6 +78,10 @@
 * Keras
 * Tensorflow
 * tqdm
+
+### Reference Images
+
+![image](https://user-images.githubusercontent.com/89792487/207662865-ac0be5b0-11c5-4d8d-a467-d3d369b3480b.png)
 
 
 ## Citations
@@ -101,7 +96,7 @@
 * [Tensorflow Hub Bert](https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3)
 * [Training Bert](https://www.youtube.com/watch?v=R6hcxMMOrPE&ab_channel=JamesBriggs)
 * [Building a Next Word Predictor in Tensorflow](https://towardsdatascience.com/building-a-next-word-predictor-in-tensorflow-e7e681d4f03f#:~:text=Next%20Word%20Prediction%20or%20what,or%20emails%20without%20realizing%20it.)
-
+* [Reference Image 1](https://www.google.com/url?sa=i&url=https%3A%2F%2Famitness.com%2F2020%2F05%2Fself-supervised-learning-nlp%2F&psig=AOvVaw0qVYDZlt8NPJTjONk7RDqH&ust=1671124544064000&source=images&cd=vfe&ved=0CBAQjhxqFwoTCKDsl5nO-fsCFQAAAAAdAAAAABAJ)
 
 
 
